@@ -1,0 +1,49 @@
+//implementation of quick sort algorithm 
+// time used 12 minutes
+public class QuicksortImplementation {
+
+	public static void main(String[] args) {
+		int[] array = { 12, 34, 2, 56, 0, -3, 5, 12, 23 };
+		quicksort(array, 0, array.length - 1);
+		for (int i : array) {
+			System.out.print(i + " ");
+		}
+
+	}
+
+	private static void quicksort(int[] array, int left, int right) {
+		if (left >= right) {
+			return;
+		}
+		int pivot = array[(left + right) / 2];
+		int index = partition(array, left, right, pivot);
+		quicksort(array, left, index - 1);
+		quicksort(array, index, right);
+	}
+
+	private static int partition(int[] array, int left, int right, int pivot) {
+		while (left <= right) {
+			while (array[left] < pivot) {
+				left++;
+
+			}
+			while (array[right] > pivot) {
+				right--;
+			}
+			if (left <= right) {
+				swap(array, left, right);
+				left++;
+				right--;
+			}
+		}
+		return left;
+	}
+
+	private static void swap(int[] array, int left, int right) {
+		int temp = array[left];
+		array[left] = array[right];
+		array[right] = temp;
+
+	}
+
+}
